@@ -13,6 +13,21 @@ window.$ = $
 
 import 'semantic-ui-sass'
 
+const scrollBottom = () => {
+  if ($('#messages').length > 0) {
+    $("#messages").scrollTop($('#messages')[0].scrollHeight)
+  }
+}
+
+const submitMessage = () => {
+  $('#message_body').on('keydown', (e) => {
+    if (e.keyCode == 13) {
+      $('button').click();
+      e.target.value = "";
+    }
+  });
+}
+
 document.addEventListener('turbolinks:load', () => {
   $('.ui.dropdown').dropdown()
 
@@ -25,6 +40,10 @@ document.addEventListener('turbolinks:load', () => {
         ;
     })
     ;
+
+  submitMessage();
+
+  scrollBottom();
 })
 
 
